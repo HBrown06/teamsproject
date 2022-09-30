@@ -39,7 +39,23 @@ public class TEAMS{
         int ans = 0;
 
         while(ans != -1){
-            System.out.println("1. ");
+            System.out.println("####WELCOME TO TEAMS####");
+            System.out.println("1. Add Student");
+            System.out.println("2. Add Teacher");
+            System.out.println("3. Add Course");
+            System.out.println("4. Edit Student");
+            System.out.println("5. List Students");
+            System.out.println("6. List Courses");
+            System.out.println("7. Search For Students");
+            System.out.println("-1. Exit");
+
+            ans = sc.nextInt();
+
+            if(ans == 1){
+
+
+
+            }
         }
         
 
@@ -75,4 +91,29 @@ public class TEAMS{
         fis.close();
         return o;
     }
+
+    //GETTERS && SETTERS
+    public static void addStudent(Student s){
+
+        students.add(s);
+
+    }
+    public static void addTeacher(Teacher t){
+
+        teachers.add(t);
+
+    }
+    public static void addCourse(Course c){
+
+        courses.add(c);
+
+    }
+    public static void editStudent(Student s){
+
+
+
+    }
+
+
+
 }
