@@ -1,22 +1,23 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Student implements Serializable {
 
-    private String name, courses, bestClass;
+    private String name,  bestClass;
+    private ArrayList<Course> classes;
     private int gradeLevel;
     private double GPA;
 
-    public Student(String name, int gradeLevel, String courses){
+    public Student(String name, int gradeLevel, ArrayList<Course> classes){
 
         this.name = name;
         this.gradeLevel = gradeLevel;
-        this.courses = courses;
+        this.classes = classes;
         GPA = 0.0;
         bestClass = null;
 
-
     }
-
+    //GETTERS AND SETTERS
     public String getName(){
 
         return name;
@@ -25,6 +26,16 @@ public class Student implements Serializable {
     public int getGradeLevel(){
 
         return gradeLevel;
+
+    }
+    public void setName(String name){
+
+        this.name = name;
+
+    }
+    public void setGradeLevel(int level){
+
+        this.gradeLevel = level;
 
     }
     public double calculateGPA(){
@@ -37,14 +48,14 @@ public class Student implements Serializable {
         return null;
 
     }
-    public void addCourse(int index){
+    public void addCourse(Course c){
 
-
+        classes.add(c);
 
     }
     public void removeCourse(int index){
 
-
+        classes.remove(index);
 
     }
     public String toString(){
