@@ -1,7 +1,6 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Course implements Serializable{
+public class Course implements Serializable, Cloneable{
 
     private String subject, teacher;
     private int grade;
@@ -21,14 +20,36 @@ public class Course implements Serializable{
         this.current = current;
 
     }
+    public Course clone(){
+
+        try{
+
+            return (Course)super.clone();
+
+        }catch(Exception e){
+        }
+
+        return null;
+
+    }
+    public String getTeacher(){
+
+        return teacher;
+
+    }
+    public String getName(){
+
+        return subject;
+
+    }
     public String toString(){
 
         if (grade >= 0){
 
-            return subject + " by " + teacher + "with a " + grade;
+            return subject + " by " + teacher + "with a " + grade + ". Currently taking? " + current;
 
         }
-        return subject + " by " + teacher;
+        return subject + " by " + teacher + ". Currently taking? "+ current;
 
 
     }

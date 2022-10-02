@@ -1,26 +1,28 @@
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Teacher implements Serializable {
 
     private String name;
     private int yearsOfExperience;
-    private ArrayList<Course> classes;
 
-    public Teacher(String Name, int yearsOfExperience){
+    public Teacher(String name, int yearsOfExperience){
         this.name = name;
         this.yearsOfExperience = yearsOfExperience;
 
     }
-    public void addCourse(Course c){
+    public String getName(){
 
-        classes.add(c);
+        return name;
 
     }
-    public void removeCourse(int index){
+    public int getYearsOfExperience(){
 
-        classes.remove(index);
-        
+        return yearsOfExperience;
+
     }
-    
+    public String toString(){
+
+        return name;
+
+    }
 }

@@ -8,11 +8,10 @@ public class Student implements Serializable {
     private int gradeLevel;
     private double GPA;
 
-    public Student(String name, int gradeLevel, ArrayList<Course> classes){
+    public Student(String name, int gradeLevel){
 
         this.name = name;
         this.gradeLevel = gradeLevel;
-        this.classes = classes;
         GPA = 0.0;
         bestClass = null;
 
@@ -28,6 +27,11 @@ public class Student implements Serializable {
         return gradeLevel;
 
     }
+    public double getGPA(){
+
+        return GPA;
+
+    }
     public void setName(String name){
 
         this.name = name;
@@ -38,9 +42,9 @@ public class Student implements Serializable {
         this.gradeLevel = level;
 
     }
-    public double calculateGPA(){
+    public void calculateGPA(){
 
-        return GPA;
+        
 
     }
     public String getBestClass(){
@@ -60,7 +64,7 @@ public class Student implements Serializable {
     }
     public String toString(){
 
-        return "Name: " + name + "\nGrade Level: " + gradeLevel + "\nGPA: " + this.calculateGPA();
+        return "Name: " + name + "\nGrade Level: " + gradeLevel + "\nGPA: " + GPA + "\nBest Class: " + bestClass;
 
     }
     

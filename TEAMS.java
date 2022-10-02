@@ -12,6 +12,126 @@ public class TEAMS{
 
     static Scanner sc = new Scanner(System.in);
 
+    //MENUS
+    public static void menuOne(){
+
+        System.out.println("####WELCOME TO TEAMS####");
+        System.out.println("1) Add Student");
+        System.out.println("2) Add Teacher");
+        System.out.println("3) Add Course");
+        System.out.println("4) Edit Student");
+        System.out.println("5) List Students");
+        System.out.println("6) List Courses");
+        System.out.println("7) Search For Student");
+        System.out.println("-1) Exit");
+
+    }
+
+    //GETTERS && SETTERS
+    public static void addStudent(Student s){
+
+        students.add(s);
+
+    }
+    public static void addTeacher(Teacher t){
+
+        teachers.add(t);
+
+    }
+    public static void addCourse(Course c){
+
+        courses.add(c);
+
+    }
+    public static void editStudent(){
+
+        listStudents();
+        System.out.println("Student Index: ");
+        int index = sc.nextInt();
+
+        System.out.println("What do you want to change?");
+        System.out.println("1) Name");
+        System.out.println("2) Grade Level");
+        System.out.println("3) Add Course");
+        System.out.println("4) Remove Course");
+
+        int ans = sc.nextInt();
+
+        if(ans == 1){
+
+            System.out.println("New Name:");
+            String name = sc.nextLine();
+
+            students.get(index).setName(name);
+
+        }
+        else if(ans == 2){
+
+            System.out.println("New Grade Level: ");
+            int gradeLevel = sc.nextInt();
+            sc.nextLine();
+
+            students.get(index).setGradeLevel(gradeLevel);
+
+        }
+        else if(ans == 3){
+
+            String teacher, subject;
+
+            System.out.println("Subject Name: ");
+            subject = sc.nextLine();
+
+            for(int i = 0; i < teachers.size();i++){
+
+                System.out.println(i + ") " + teachers.get(i));
+
+            }
+            
+            System.out.println("Which Teacher? ");
+            teacher = sc.nextLine();
+
+            addCourse(new Course(subject,teacher));
+
+        }
+        else if(ans == 4){
+
+            System.out.println("Course Name: ");
+            String name = sc.nextLine();
+
+            for(int i = 0; i < courses.size(); i++){
+
+                if(courses.get(i).getName() == name){
+
+                    courses.remove(i);
+
+                }
+            }
+        }
+    }
+    public static void listStudents(){
+
+        for (int i = 0; i < students.size();i++){
+
+            System.out.println(i + ") " + students.get(i));
+
+        }
+    }
+    public static void listCourses(){
+
+        for(int i = 0; i < courses.size(); i++){
+
+            System.out.println(i + ") " + courses.get(i).getName() + " by " +  courses.get(i).getTeacher());
+
+        }
+    }
+    public static void listTeachers(){
+
+        for(int i = 0; i < teachers.size(); i++){
+
+            System.out.println(i + ") " + teachers.get(i));
+
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -34,7 +154,6 @@ public class TEAMS{
             courses = new ArrayList<>();
         }
 
-
         //############## MAIN MENU STARTS HERE ##############
         int ans = 0;
 
@@ -45,68 +164,82 @@ public class TEAMS{
 
             if(ans == 1){
 
-                int gradeLevel, numCourses;
+                int gradeLevel;
                 String name;
-                ArrayList<Course> classes = null;
-
-                System.out.println("Student Name: ");
-                name = sc.nextLine();
 
                 System.out.println("Student Grade Level: ");
                 gradeLevel = sc.nextInt();
+                sc.nextLine();
 
-                System.out.println("Number of Courses: ");
-                numCourses = sc.nextInt();
-
-                for(int i = 0; i < numCourses; i++){
-
-
-                    System.out.println("Course Name: ");
-                    String courseName = sc.nextLine();
-
-                    System.out.println("Teacher: ");
-                    String teacherName = sc.nextLine();
-
-                    classes.add(new Course(courseName, teacherName));
-
-                }
-
-                addStudent(new Student(name, gradeLevel, classes));
+                System.out.println("Student Name: ");
+                name = sc.nextLine();
+                
+                addStudent(new Student(name, gradeLevel));
 
             }
             else if(ans == 2){
 
                 int yearsOfExperience;
                 String name;
-                ArrayList<Course> classes = null;
 
+                System.out.println("Years of Experience: ");
+                yearsOfExperience = sc.nextInt();
+                sc.nextLine();
 
+                System.out.println("Teacher Name: ");
+                name = sc.nextLine();
+
+                addTeacher(new Teacher(name, yearsOfExperience));
 
             }
             else if(ans == 3){
 
+                listTeachers();
+                
+                System.out.println("Teacher: ");
+                int teacher = sc.nextInt();
+                sc.nextLine();
 
+                System.out.println("Subject Name: ");
+                String subject = sc.nextLine();
+
+                addCourse(new Course(subject,teachers.get(teacher).getName()));
                 
             }
             else if(ans == 4){
 
-
+                editStudent();
                 
             }
             else if(ans == 5){
 
-
+                listStudents();
                 
             }
             else if(ans == 6){
 
-
+                listCourses();
                 
             }
             else if(ans == 7){
 
+                System.out.println("Student Name: ");
+                String name = sc.nextLine();
+                sc.nextLine();
 
-                
+                for(int i = 0; i < students.size(); i++){
+
+                    if(students.get(i).getName() == name){
+
+                        System.out.print(students.get(i));
+
+                    }
+                    else{
+
+                        System.out.println("No student found.");
+                        
+                    }
+                }
             }
             else if(ans == -1){
 
@@ -146,63 +279,5 @@ public class TEAMS{
         fis.close();
         return o;
     }
-
-    //MENUS
-    public static void menuOne(){
-
-        System.out.println("####WELCOME TO TEAMS####");
-        System.out.println("1) Add Student");
-        System.out.println("2) Add Teacher");
-        System.out.println("3) Add Course");
-        System.out.println("4) Edit Student");
-        System.out.println("5) List Students");
-        System.out.println("6) List Courses");
-        System.out.println("7) Search For Students");
-        System.out.println("-1) Exit");
-
-    }
-
-    //GETTERS && SETTERS
-    public static void addStudent(Student s){
-
-        students.add(s);
-
-    }
-    public static void addTeacher(Teacher t){
-
-        teachers.add(t);
-
-    }
-    public static void addCourse(Course c){
-
-        courses.add(c);
-
-    }
-    public static void editStudent(){
-
-        listStudents();
-        System.out.println("Student Index: ");
-        int index = sc.nextInt();
-
-        System.out.println("What do you want to change?");
-        System.out.println("1) Name");
-        System.out.println("2) Grade Level");
-        System.out.println("3) Add Course");
-        System.out.println("4) Remove Course");
-
-        (students.get(index)).setName("John");
-
-    }
-    public static void listStudents(){
-
-        for (int i = 0; i < students.size();i++){
-
-            System.out.print(i + ") " + students.get(i) + ", " );
-
-        }
-
-    }
-
-
 
 }
