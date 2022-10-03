@@ -2,18 +2,19 @@ import java.io.Serializable;
 
 public class Course implements Serializable, Cloneable{
 
-    private String subject, teacher;
+    private String subject;
+    private Teacher teacher;
     private int grade;
     private boolean current;
 
-    public Course(String subject, String teacher){
+    public Course(String subject, Teacher teacher){
         this.subject = subject;
         this.teacher = teacher;
         grade = -1;
         current = false;
 
     }
-    public Course(String subject, String teacher, int grade, boolean current){
+    public Course(String subject, Teacher teacher, int grade, boolean current){
         this.subject = subject;
         this.teacher = teacher;
         this.grade = grade;
@@ -32,7 +33,7 @@ public class Course implements Serializable, Cloneable{
         return null;
 
     }
-    public String getTeacher(){
+    public Teacher getTeacher(){
 
         return teacher;
 
@@ -40,6 +41,26 @@ public class Course implements Serializable, Cloneable{
     public String getName(){
 
         return subject;
+
+    }
+    public int getGrade(){
+
+        return grade;
+
+    }
+    public void setTeacher(Teacher teacher){
+
+        this.teacher = teacher;
+
+    }
+    public void setName(String subject){
+
+        this.subject = subject;
+
+    }
+    public void setGrade(int grade){
+
+        this.grade = grade;
 
     }
     public String toString(){
@@ -51,7 +72,5 @@ public class Course implements Serializable, Cloneable{
         }
         return subject + " by " + teacher + ". Currently taking? "+ current;
 
-
     }
-    
 }

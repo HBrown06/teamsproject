@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Student implements Serializable {
 
-    private String name,  bestClass;
-    private ArrayList<Course> classes;
+    private String name, bestClass;
+    private static ArrayList<Course> classes;
     private int gradeLevel;
     private double GPA;
 
@@ -32,6 +32,22 @@ public class Student implements Serializable {
         return GPA;
 
     }
+    public void listStudentClasses(){
+
+        if(classes != null){
+
+            for(int i = 0; i < classes.size(); i++){
+
+                System.out.println(i + ") "+ classes.get(i));
+
+            }
+        }else{
+
+            System.out.println("No classes");
+
+        }
+        
+    }
     public void setName(String name){
 
         this.name = name;
@@ -54,8 +70,15 @@ public class Student implements Serializable {
     }
     public void addCourse(Course c){
 
-        classes.add(c);
+        if (classes == null){
 
+            classes = new ArrayList<>(1);
+
+        }else{
+            
+            classes.add(c);
+        
+        }
     }
     public void removeCourse(int index){
 

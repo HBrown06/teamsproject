@@ -61,6 +61,7 @@ public class TEAMS{
 
             System.out.println("New Name:");
             String name = sc.nextLine();
+            sc.nextLine();
 
             students.get(index).setName(name);
 
@@ -76,36 +77,32 @@ public class TEAMS{
         }
         else if(ans == 3){
 
-            String teacher, subject;
-
-            System.out.println("Subject Name: ");
-            subject = sc.nextLine();
-
-            for(int i = 0; i < teachers.size();i++){
-
-                System.out.println(i + ") " + teachers.get(i));
-
-            }
+            int course;
             
-            System.out.println("Which Teacher? ");
-            teacher = sc.nextLine();
+            listCourses();
 
-            addCourse(new Course(subject,teacher));
+            System.out.println("Which Course: ");
+            course = sc.nextInt();
+            sc.nextLine();
+
+            students.get(index).addCourse(courses.get(course));
 
         }
         else if(ans == 4){
 
-            System.out.println("Course Name: ");
-            String name = sc.nextLine();
+            listStudents();
+            System.out.println("Which Student: ");
+            int student = sc.nextInt();
+            sc.nextLine();
 
-            for(int i = 0; i < courses.size(); i++){
+            students.get(student).listStudentClasses();
 
-                if(courses.get(i).getName() == name){
+            System.out.println("Which Course: ");
+            int course = sc.nextInt();
+            sc.nextLine();
 
-                    courses.remove(i);
-
-                }
-            }
+            students.get(student).removeCourse(course);
+            
         }
     }
     public static void listStudents(){
@@ -203,7 +200,7 @@ public class TEAMS{
                 System.out.println("Subject Name: ");
                 String subject = sc.nextLine();
 
-                addCourse(new Course(subject,teachers.get(teacher).getName()));
+                addCourse(new Course(subject,teachers.get(teacher)));
                 
             }
             else if(ans == 4){
