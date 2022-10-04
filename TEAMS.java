@@ -87,6 +87,12 @@ public class TEAMS{
 
             students.get(index).addCourse(courses.get(course));
 
+            System.out.println("Student Grade: ");
+            int grade = sc.nextInt();
+            sc.nextLine();
+
+            courses.get(course).setGrade(grade);
+
         }
         else if(ans == 4){
 
@@ -95,7 +101,7 @@ public class TEAMS{
             int student = sc.nextInt();
             sc.nextLine();
 
-            students.get(student).listStudentClasses();
+            System.out.println(students.get(student).listStudentClasses());
 
             System.out.println("Which Course: ");
             int course = sc.nextInt();
@@ -131,7 +137,6 @@ public class TEAMS{
     }
 
     public static void main(String[] args) {
-
         
         //Load the data if available ### DO NOT CHANGE THIS PART
         try{

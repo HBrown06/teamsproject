@@ -3,19 +3,24 @@ import java.util.ArrayList;
 
 public class Student implements Serializable {
 
-    private String name, bestClass;
-    private static ArrayList<Course> classes;
+    private String name;
+    private Course bestClass;
+    private ArrayList<Course> classes;
+    private int grade;
     private int gradeLevel;
-    private double GPA;
+    private static double GPA;
 
     public Student(String name, int gradeLevel){
 
         this.name = name;
         this.gradeLevel = gradeLevel;
+        grade = -1;
         GPA = 0.0;
-        bestClass = null;
+        bestClass();
+        classes = new ArrayList<>();
 
     }
+    
     //GETTERS AND SETTERS
     public String getName(){
 
@@ -32,21 +37,31 @@ public class Student implements Serializable {
         return GPA;
 
     }
-    public void listStudentClasses(){
+    public int getGrade(){
 
-        if(classes != null){
+        return grade;
+
+    }
+    public void setGrade(int grade){
+
+        this.grade = grade;
+
+    }
+    public String listStudentClasses(){
+
+        if(classes.size() != 0){
 
             for(int i = 0; i < classes.size(); i++){
 
-                System.out.println(i + ") "+ classes.get(i));
+                return i + ") "+ classes.get(i);
 
             }
         }else{
 
-            System.out.println("No classes");
+            return "No classes";
 
         }
-        
+        return "No Classes";
     }
     public void setName(String name){
 
@@ -60,25 +75,63 @@ public class Student implements Serializable {
     }
     public void calculateGPA(){
 
-        
+        double total = 0.0;
 
+        for(int i = 0;i < classes.size();i++){
+
+            if (classes.get(i).getGrade() >= 0 && classes.get(i).getGrade() <= 100){
+
+                if(classes.get(i).getGrade() >= 90){
+
+                    total += 4.0;
+
+                }
+                else if(classes.get(i).getGrade() >= 80 && classes.get(i).getGrade() < 90){
+
+                    total += 3.0;
+
+                }
+                else if(classes.get(i).getGrade() >= 70 && classes.get(i).getGrade() < 80){
+
+                    total += 3.0;
+
+                }
+                else if(classes.get(i).getGrade() >= 60 && classes.get(i).getGrade() < 70){
+
+                    total += 2.0;
+
+                }
+                else if(classes.get(i).getGrade() >= 50 && classes.get(i).getGrade() < 60){
+
+                    total += 1.0;
+
+                }
+                
+                GPA = total / classes.size();
+
+            }
+        }
     }
-    public String getBestClass(){
+    public void bestClass(){
 
-        return null;
+        Course bestClass = classes.get(0);
+
+        for(int i =0; i < classes.size();i++){
+
+            if(classes.get(i).getGrade() > bestClass.getGrade()){
+
+                bestClass = classes.get(i);
+
+            }
+        }
+        this.bestClass = bestClass;
 
     }
     public void addCourse(Course c){
 
-        if (classes == null){
 
-            classes = new ArrayList<>(1);
+        classes.add(c);
 
-        }else{
-            
-            classes.add(c);
-        
-        }
     }
     public void removeCourse(int index){
 
