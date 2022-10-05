@@ -16,7 +16,6 @@ public class Student implements Serializable {
         this.gradeLevel = gradeLevel;
         grade = -1;
         GPA = 0.0;
-        bestClass();
         classes = new ArrayList<>();
 
     }
@@ -40,6 +39,11 @@ public class Student implements Serializable {
     public int getGrade(){
 
         return grade;
+
+    }
+    public Course getBestClass(){
+
+        return bestClass;
 
     }
     public void setGrade(int grade){
@@ -116,19 +120,24 @@ public class Student implements Serializable {
 
         Course bestClass = classes.get(0);
 
-        for(int i =0; i < classes.size();i++){
+        if(classes.size() > 0){
 
-            if(classes.get(i).getGrade() > bestClass.getGrade()){
+            for(int i = 0; i < classes.size();i++){
 
-                bestClass = classes.get(i);
+                if(classes.get(i).getGrade() > bestClass.getGrade()){
 
+                    bestClass = classes.get(i);
+
+                }
             }
-        }
-        this.bestClass = bestClass;
+            this.bestClass = bestClass;
+        }else{
 
+            this.bestClass = null;
+
+        }
     }
     public void addCourse(Course c){
-
 
         classes.add(c);
 
@@ -139,9 +148,23 @@ public class Student implements Serializable {
 
     }
     public String toString(){
+        
+        if (classes.size() > 0){
 
-        return "Name: " + name + "\nGrade Level: " + gradeLevel + "\nGPA: " + GPA + "\nBest Class: " + bestClass;
+            bestClass();
+            calculateGPA();
 
+        }
+
+        if(getBestClass() != null){
+
+            return "Name: " + name + "\nGrade Level: " + gradeLevel + "\nGPA: " + GPA + "\nBest Class: " + bestClass;
+
+        }else{
+
+            return "Name: " + name + "\nGrade Level: " + gradeLevel + "\nGPA: " + GPA;
+
+        }
     }
     
 }

@@ -11,7 +11,7 @@ public class Course implements Serializable, Cloneable{
         this.subject = subject;
         this.teacher = teacher;
         grade = -1;
-        current = false;
+        current = true;
 
     }
     public Course(String subject, Teacher teacher, int grade, boolean current){
@@ -67,7 +67,7 @@ public class Course implements Serializable, Cloneable{
 
         if (grade >= 0){
 
-            return subject + " by " + teacher + "with a " + grade + ". Currently taking? " + current;
+            return subject + " by " + teacher + " with a " + grade + ". Currently taking? " + current;
 
         }
         return subject + " by " + teacher + ". Currently taking? "+ current;
