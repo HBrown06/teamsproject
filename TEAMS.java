@@ -59,7 +59,7 @@ public class TEAMS{
 
         if(ans == 1){
 
-            System.out.println("New Name:");
+            System.out.println("New Name: ");
             String name = sc.nextLine();
             sc.nextLine();
 
@@ -96,18 +96,13 @@ public class TEAMS{
         }
         else if(ans == 4){
 
-            listStudents();
-            System.out.println("Which Student: ");
-            int student = sc.nextInt();
-            sc.nextLine();
-
-            System.out.println(students.get(student).listStudentClasses());
+            System.out.println(students.get(index).listStudentClasses());
 
             System.out.println("Which Course: ");
             int course = sc.nextInt();
             sc.nextLine();
 
-            students.get(student).removeCourse(course);
+            students.get(index).removeCourse(course);
             
         }
     }
