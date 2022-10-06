@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TEAMS{
+
     static ArrayList<Student> students;
     static ArrayList<Teacher> teachers;
     static ArrayList<Course> courses;
@@ -96,7 +97,7 @@ public class TEAMS{
         }
         else if(ans == 4){
 
-            System.out.println(students.get(index).listStudentClasses());
+            students.get(index).listStudentClasses();
 
             System.out.println("Which Course: ");
             int course = sc.nextInt();

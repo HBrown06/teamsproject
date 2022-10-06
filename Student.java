@@ -8,7 +8,7 @@ public class Student implements Serializable {
     private ArrayList<Course> classes;
     private int grade;
     private int gradeLevel;
-    private static double GPA;
+    private double GPA;
 
     public Student(String name, int gradeLevel){
 
@@ -46,26 +46,22 @@ public class Student implements Serializable {
         return bestClass;
 
     }
+    public void listStudentClasses(){
+
+        if(classes.size() != 0){
+
+            for(int i = 0; i < classes.size();i++){
+
+                System.out.println( i + ") "+ classes.get(i));
+
+            }
+        }
+        System.out.println("No Classes");
+    }
     public void setGrade(int grade){
 
         this.grade = grade;
 
-    }
-    public String listStudentClasses(){
-
-        if(classes.size() != 0){
-
-            for(int i = 0; i < classes.size(); i++){
-
-                return i + ") "+ classes.get(i);
-
-            }
-        }else{
-
-            return "No classes";
-
-        }
-        return "No Classes";
     }
     public void setName(String name){
 
@@ -97,43 +93,43 @@ public class Student implements Serializable {
                 }
                 else if(classes.get(i).getGrade() >= 70 && classes.get(i).getGrade() < 80){
 
-                    total += 3.0;
+                    total += 2.0;
 
                 }
                 else if(classes.get(i).getGrade() >= 60 && classes.get(i).getGrade() < 70){
 
-                    total += 2.0;
+                    total += 1.0;
 
                 }
                 else if(classes.get(i).getGrade() >= 50 && classes.get(i).getGrade() < 60){
 
-                    total += 1.0;
+                    total += 0.0;
 
                 }
                 
-                GPA = total / classes.size();
+                this.GPA = total / classes.size();
 
             }
         }
     }
     public void bestClass(){
 
-        Course bestClass = classes.get(0);
+        Course highestGrade = classes.get(0);
 
         if(classes.size() > 0){
 
             for(int i = 0; i < classes.size();i++){
 
-                if(classes.get(i).getGrade() > bestClass.getGrade()){
+                if(classes.get(i).getGrade() > highestGrade.getGrade()){
 
-                    bestClass = classes.get(i);
+                    highestGrade = classes.get(i);
 
                 }
             }
-            this.bestClass = bestClass;
+            bestClass = highestGrade;
         }else{
 
-            this.bestClass = null;
+            bestClass = null;
 
         }
     }
@@ -145,6 +141,18 @@ public class Student implements Serializable {
     public void removeCourse(int index){
 
         classes.remove(index);
+
+        if(classes.size() != 0){
+
+            bestClass();
+            calculateGPA();
+            
+        }else{
+
+            GPA = 0.0;
+            bestClass = null;
+
+        }
 
     }
     public String toString(){
