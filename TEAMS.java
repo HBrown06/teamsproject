@@ -86,13 +86,28 @@ public class TEAMS{
             course = sc.nextInt();
             sc.nextLine();
 
-            students.get(index).addCourse(courses.get(course));
+            students.get(index).addCourse(courses.get(course).clone());
 
             System.out.println("Student Grade: ");
             int grade = sc.nextInt();
             sc.nextLine();
 
             courses.get(course).setGrade(grade);
+
+            System.out.println("Currently Taking? (y/n): ");
+            String current = sc.nextLine();
+
+            boolean yn = false;
+            if (current == "y"){
+
+                yn = true;
+
+            }else if(current == "n"){
+
+                yn = false;
+
+            }
+            students.get(index).getCourses();
 
         }
         else if(ans == 4){
