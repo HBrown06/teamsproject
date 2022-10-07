@@ -46,6 +46,11 @@ public class Student implements Serializable {
         return bestClass;
 
     }
+    public Course getCourse(int index){
+
+        return classes.get(index);
+
+    }
     public void listStudentClasses(){
 
         if(classes.size() != 0){
@@ -55,8 +60,11 @@ public class Student implements Serializable {
                 System.out.println( i + ") "+ classes.get(i));
 
             }
+        }else{
+
+            System.out.println("No Classes");
+
         }
-        System.out.println("No Classes");
     }
     public void setGrade(int grade){
 

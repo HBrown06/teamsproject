@@ -107,7 +107,7 @@ public class TEAMS{
                 yn = false;
 
             }
-            students.get(index).getCourses();
+            
 
         }
         else if(ans == 4){

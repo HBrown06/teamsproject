@@ -8,6 +8,7 @@ public class Course implements Serializable, Cloneable{
     private boolean current;
 
     public Course(String subject, Teacher teacher){
+
         this.subject = subject;
         this.teacher = teacher;
         grade = -1;
@@ -15,6 +16,7 @@ public class Course implements Serializable, Cloneable{
 
     }
     public Course(String subject, Teacher teacher, int grade, boolean current){
+         
         this.subject = subject;
         this.teacher = teacher;
         this.grade = grade;
@@ -48,6 +50,11 @@ public class Course implements Serializable, Cloneable{
         return grade;
 
     }
+    public boolean getCurrent(){
+
+        return current;
+
+    }
     public void setTeacher(Teacher teacher){
 
         this.teacher = teacher;
@@ -61,6 +68,11 @@ public class Course implements Serializable, Cloneable{
     public void setGrade(int grade){
 
         this.grade = grade;
+
+    }
+    public void setCurrent(boolean current){
+
+        this.current = current;
 
     }
     public String toString(){
