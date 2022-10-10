@@ -256,7 +256,11 @@ public class TEAMS{
             }
             else if(ans == -1){
 
-                System.exit(0);
+                try{
+                     
+                    saveData();
+                    
+                }catch(Exception e){}
                 
             }
         } 
